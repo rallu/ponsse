@@ -1,0 +1,19 @@
+<div class="pagecontainer" id="saapage">
+    <h1>Ennuste: {{saaCtrl.weather.locationName}}, {{saaCtrl.weather.regionName}}</h1>
+
+    <div class="weather">
+        <div ng-repeat="info in saaCtrl.weather.weatherInfos">
+            <div class="date">{{info.time | amDateFormat:'HH:mm'}}</div>
+            <div class="icon {{info.weatherSymbol}}"></div>
+            <div class="temp">
+                {{info.temperature}}&deg;C
+                <div class="feelslike">{{info.feelslike}}</div>
+            </div>
+            <div class="rain">
+                <div class="amount">{{info.precipitation1h}} mm</div>
+                <div class="probability">{{info.probabilityPrecipitation}}%</div>
+            </div>
+            <div class="wind">{{info.windSpeedMs}}ms</div>
+        </div>
+    </div>
+</div>
