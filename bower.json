@@ -3,7 +3,7 @@
   "description": "",
   "main": "index.js",
   "authors": [
-    "Juha-Pekka Rajaniemi <juha.rajaniemi@gmail.com>"
+    "Juha-Pekka Rajaniemi <juha-pekka.rajaniemi@frc.fi>"
   ],
   "license": "ISC",
   "moduleType": [],
@@ -19,6 +19,8 @@
     "Proj4Leaflet": "proj4leaflet#^0.7.2",
     "Leaflet.MML-layers": "git@github.com:jleh/Leaflet.MML-layers.git#^1.2.0",
     "angular": "^1.5.0",
-    "angular-route": "^1.5.0"
+    "angular-route": "^1.5.0",
+    "angular-moment": "^0.10.3",
+    "moment": "^2.11.2"
   }
 }

@@ -9,10 +9,11 @@ $opensans: 'Open Sans', sans-serif;
 
 $margin: 10px;
 
-html, body {
+html, body, #body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     color: $color-text;
     background: $color-bg;
     font-family: $opensans;
@@ -20,7 +21,7 @@ html, body {
 }
 
 #view {
-    height: calc(100% - 120px);
+    height: calc(100% - 100px);
 }
 
 #map {
@@ -28,22 +29,60 @@ html, body {
     height: 100%;
 }
 
+#mapui {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .button {
+        width: 40px;
+        height: 40px;
+        @extend .ponssebox;
+        margin: 5px 0px;
+        text-decoration: none;
+        display: inline-block;
+        padding: 5px 5px;
+        color: $color-text;
+        text-align: center;
+        font-size: 8px;
+        cursor: pointer;
+
+        i {
+            font-size: 20px;
+            display: block;
+        }
+
+        &:hover {
+            color: $color-ponsse;
+        }
+
+        &.active {
+            color: $color-ponsse;
+            border-color: $color-ponsse;
+        }
+    }
+}
+
 .ponssebox {
     border-radius: 10px;
     border: 2px solid #ccc;
     background: -webkit-linear-gradient(top,  $color-gradient-from 0%,$color-gradient-to 100%);
+    box-shadow: 0px 5px 10px 0 rgba(0,0,0,0.4);
 }
 
 header {
     background: $color-bg;
     padding: $margin;
-    height: 100px;
+    height: 80px;
     border-bottom: 2px solid #ccc;
 
     .logo {
         display: inline-block;
         position: relative;
         top: -$margin;
+        left: $margin*2;
         text-decoration: none;
 
         span {
@@ -52,46 +91,201 @@ header {
             margin: 0px 2px;
             text-align: center;
             width: 30px;
-            padding: 20px 7px 5px 7px;
+            padding: 20px 2px 2px 2px;
             color: black;
-            font-size: 30px;
+            font-size: 20px;
             font-weight: 700;
         }
         div {
             color: $color-text;
-            font-size: 20px;
+            font-size: 30px;
             text-align: center;
             margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
         }
     }
 
-    img {
-        position: relative;
-        top: -20px;
-        height: 100px;
-    }
 
     .buttons {
         float: right;
 
         a {
+            width: 60px;
+            height: 60px;
             @extend .ponssebox;
             margin: 0 5px;
             text-decoration: none;
             display: inline-block;
-            padding: 10px 30px;
+            padding: 5px 5px;
             color: $color-text;
             text-align: center;
             font-size: 14px;
 
             i {
-                font-size: 40px;
+                font-size: 30px;
                 display: block;
             }
 
             &:hover {
                 color: $color-ponsse;
             }
+
+            &.active {
+                color: $color-ponsse;
+                border-color: $color-ponsse;
+            }
+        }
+    }
+}
+
+.pagecontainer {
+    margin: 0px auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+#settingspage {
+    .ponssebox {
+        text-align: center;
+        font-size: 20px;
+        i {
+            display: block;
+            font-size: 40px;
+        }
+
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 400px;
+    }
+}
+
+#saapage {
+    .weather > div {
+        display: flex;
+        margin: 10px 10px;
+        justify-content: space-around;
+        font-size: 30px;
+
+        > div {
+            align-self: center;
+            text-align: center;
+        }
+    }
+
+    .icon {
+        width: 120px;
+        height: 120px;
+        background-size: auto 120px;
+        background-position: top left;
+        background-image: url("http://yle.fi/saa/skins/jGXxLmJf10946/uutiset/img/saa/svg/weather-symbols-day-240px-vertical.svg");
+
+        &.CLEAR {
+            background-position: 0 0
+        }
+
+        &.PARTLY_CLOUDY {
+            background-position: -116px 0
+        }
+
+        &.CLOUDY {
+            background-position: -232px 0
+        }
+
+        &.LIGHT_RAIN_SHOWERS {
+            background-position: -348px 0
+        }
+
+        &.RAIN_SHOWERS {
+            background-position: -464px 0
+        }
+
+        &.HEAVY_RAIN_SHOWERS {
+            background-position: -580px 0
+        }
+
+        &.LIGHT_RAIN {
+            background-position: -696px 0
+        }
+
+        &.RAIN {
+            background-position: -812px 0
+        }
+
+        &.HEAVY_RAIN {
+            background-position: -928px 0
+        }
+
+        &.LIGHT_SNOW_SHOWERS {
+            background-position: -1044px 0
+        }
+
+        &.SNOW_SHOWERS {
+            background-position: -1160px 0
+        }
+
+        &.HEAVY_SNOW_SHOWERS {
+            background-position: -1276px 0
+        }
+
+        &.LIGHT_SNOWFALL {
+            background-position: -1392px 0
+        }
+
+        &.SNOWFALL {
+            background-position: -1508px 0
+        }
+
+        &.HEAVY_SNOWFALL {
+            background-position: -1624px 0
+        }
+
+        &.THUNDERSHOWERS {
+            background-position: -1740px 0
+        }
+
+        &.STRONG_THUNDERSHOWERS {
+            background-position: -1856px 0
+        }
+
+        &.THUNDER {
+            background-position: -1972px 0
+        }
+
+        &.HEAVY_THUNDER {
+            background-position: -2088px 0
+        }
+
+        &.LIGHT_SLEET_SHOWERS {
+            background-position: -2204px 0
+        }
+
+        &.SLEET_SHOWERS {
+            background-position: -2320px 0
+        }
+
+        &.HEAVY_SLEET_SHOWERS {
+            background-position: -2436px 0
+        }
+
+        &.LIGHT_SLEET {
+            background-position: -2552px 0
+        }
+
+        &.SLEET {
+            background-position: -2668px 0
+        }
+
+        &.HEAVY_SLEET {
+            background-position: -2784px 0
+        }
+
+        &.MOSTLY_CLOUDY {
+            background-position: -2900px 0
+        }
+
+        &.FOG {
+            background-position: -3016px 0
         }
     }
 }

@@ -1,4 +1,4 @@
-var ponsse = angular.module("ponsse", ["ngRoute"]);
+var ponsse = angular.module("ponsse", ["ngRoute","angularMoment"]);
 
 ponsse.config(function($routeProvider) {
     $routeProvider.when("/", {
@@ -9,5 +9,13 @@ ponsse.config(function($routeProvider) {
         templateUrl: "js/map/map.html",
         controller: "mapController",
         controllerAs: "mapCtrl"
-    })
+    }).when("/settings", {
+        templateUrl: "js/settings/settings.html",
+        controller: "settingsController",
+        controllerAs: "settingsCtrl"
+    }).when("/saa", {
+        templateUrl: "js/saa/saa.html",
+        controller: "saaController",
+        controllerAs: "saaCtrl"
+    });
 });

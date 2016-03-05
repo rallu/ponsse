@@ -12,6 +12,11 @@ app.get("/map/:z/:x/:y", function(req, res) {
     request(rurl).pipe(res);
 });
 
+app.use("/weather", function(req, res) {
+    var weatherurl = "http://yle.fi/saa/resources/ajax/saa-api/hourly-forecast.action?id=639362"
+    request(weatherurl).pipe(res);
+});
+
 app.use(express.static("public_html"));
 
 app.listen(3000, function () {
