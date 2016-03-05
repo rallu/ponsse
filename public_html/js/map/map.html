@@ -1,15 +1,34 @@
 <div id="map"></div>
-<div id="mapui">
-    <div class="button">
-        <i class="icon ion-android-alert"></i>
-        Vaara
+<div id="pagemap">
+    <div class="mapui">
+        <div class="button">{{mapCtrl | json}}</div>
+        <div class="button">
+            <i class="icon ion-android-alert"></i>
+            Vaara
+        </div>
+        <div class="button">
+            <i class="icon ion-waterdrop"></i>
+            Kosteikko
+        </div>
+        <div class="button" ng-click="mapCtrl.mode = 'clickplace'">
+            <i class="icon ion-flag"></i>
+            Merkitse
+        </div>
     </div>
-    <div class="button">
-        <i class="icon ion-waterdrop"></i>
-        Kosteikko
+    <div class="message">
+        <div class="ponssebox" ng-show="mapCtrl.mode == 'clickplace'">
+            Klikkaa/paina paikkaan, johon haluat merkinnän.
+            <button class="cancel" ng-click="mapCtrl.cancel()">Peruuta</button>
+        </div>
     </div>
-    <div class="button">
-        <i class="icon ion-flag"></i>
-        Merkitse
+    <div class="modal" ng-show="mapCtrl.modal != null">
+        <div class="content ponssebox">
+            <div class="addflag" ng-show="mapCtrl.modal == 'addflag'">
+                <h2>Lisää viesti</h2>
+                <textarea type="text" ng-model="mapController.flagtext" placeholder="Kirjoita viestisi tähän"></textarea>
+                <button class="cancel" ng-click="mapCtrl.cancel()">Peruuta</button>
+                <button ng-click="mapCtrl.addFlag()">Lisää</button>
+            </div>
+        </div>
     </div>
 </div>

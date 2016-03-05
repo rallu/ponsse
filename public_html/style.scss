@@ -1,6 +1,7 @@
 $color-bg: #333333;
 $color-text: #ccc;
 $color-ponsse: #fece21;
+$color-warning: #fe8921;
 
 $color-gradient-from: #505050;
 $color-gradient-to: #383838;
@@ -29,40 +30,114 @@ html, body, #body {
     height: 100%;
 }
 
-#mapui {
-    position: absolute;
-    bottom: 5px;
-    left: 10px;
-    display: flex;
-    flex-direction: column;
+textarea {
+    font-size: 16px;
+    padding: 5px;
+}
 
-    .button {
-        width: 40px;
-        height: 40px;
-        @extend .ponssebox;
-        margin: 5px 0px;
-        text-decoration: none;
-        display: inline-block;
-        padding: 5px 5px;
-        color: $color-text;
-        text-align: center;
-        font-size: 8px;
-        cursor: pointer;
+*:focus {
+    outline: none;
+}
 
-        i {
-            font-size: 20px;
-            display: block;
-        }
+button {
+    background: $color-ponsse;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    box-shadow: 0px 5px 10px 0 rgba(0,0,0,0.4);
+    cursor: pointer;
+    margin: 10px;
 
-        &:hover {
-            color: $color-ponsse;
-        }
+    &.cancel {
+        background: $color-warning;
+    }
+}
 
-        &.active {
-            color: $color-ponsse;
-            border-color: $color-ponsse;
+#pagemap {
+    .mapui {
+        position: absolute;
+        bottom: 5px;
+        left: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .button {
+            width: 40px;
+            height: 40px;
+            @extend .ponssebox;
+            margin: 5px 0px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 5px;
+            color: $color-text;
+            text-align: center;
+            font-size: 8px;
+            cursor: pointer;
+
+            i {
+                font-size: 20px;
+                display: block;
+            }
+
+            &:hover {
+                color: $color-ponsse;
+            }
+
+            &.active {
+                color: $color-ponsse;
+                border-color: $color-ponsse;
+            }
         }
     }
+
+
+    .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+
+        .content {
+            align-self: center;
+            padding: 20px;
+            margin: 0 auto;
+            min-width: 500px;
+            text-align: center;
+
+            h2 {
+                margin: 0 0 20px 0;
+            }
+
+            textarea {
+                width: 100%;
+                height: 150px;
+            }
+        }
+    }
+
+    .message {
+        position: absolute;
+        z-index: 1;
+        bottom: 10px;
+        width: 100%;
+        > div {
+            margin: 0 auto;
+            padding: 10px;
+            display: block;
+            max-width: 500px;
+            text-align: center;
+
+            button {
+                padding: 5px 10px;
+            }
+        }
+    }
+
 }
 
 .ponssebox {
@@ -158,6 +233,13 @@ header {
         margin: 20px auto;
         max-width: 400px;
     }
+}
+
+.map-icon-flag {
+    border: 1px solid red;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
 }
 
 #saapage {

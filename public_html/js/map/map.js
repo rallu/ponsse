@@ -25,11 +25,13 @@ var colors = {
     ponsse: "#fece21"
 }
 
-ponsse.controller("mapController", function() {
+ponsse.controller("mapController", function($scope) {
+    var self = this;
     var map = null;
+    this.lastClickPosition = null;
 
     this.init = function() {
-        var map = new L.map('map', {
+        map = new L.map('map', {
             crs: L.TileLayer.MML.get3067Proj()
         });
         var resolutions = [
@@ -51,9 +53,36 @@ ponsse.controller("mapController", function() {
         map.setView(locations.janinmetsa, 14);
 
         map.on('click', function(e) {
-            console.log("clicked", e.latlng);
+            $scope.$apply(function() {
+                console.log("clicked [" + e.latlng.lat + ", " + e.latlng.lng + "]");
+                self.lastClickPosition = e.latlng;
+                if (self.mode == "clickplace") {
+                    self.modal = "addflag";
+                }
+            });
         });
     };
 
     this.init();
+
+    this.mode = null;
+    this.modal = null;
+
+    this.cancel = function() {
+        this.mode = null;
+        this.modal = null;
+        this.flagtext = null;
+    };
+
+    this.addFlag = function() {
+        var marker = L.marker(self.lastClickPosition, {
+            icon: L.divIcon({
+                className: "map-icon-flag"
+            })
+        });
+        console.log(marker);
+        marker.addTo(map);
+
+        this.cancel();
+    };
 });
