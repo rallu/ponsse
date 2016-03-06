@@ -10,6 +10,9 @@ html, body, #body {
 
 #view {
   height: calc(100% - 100px); }
+  @media (max-width: 700px) {
+    #view {
+      height: calc(100% - 57px); } }
 
 #map {
   width: 100%;
@@ -152,6 +155,36 @@ header {
       header .buttons a.active {
         color: #fece21;
         border-color: #fece21; }
+  @media (max-width: 700px) {
+    header {
+      height: 45px;
+      padding: 5px; }
+      header .logo {
+        left: 5px; }
+        header .logo span {
+          font-size: 10px;
+          width: 20px;
+          padding: 10px 2px 2px 2px; }
+        header .logo div {
+          font-size: 16px; }
+      header .buttons a {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        font-size: 7px; }
+        header .buttons a i {
+          font-size: 15px; } }
+  @media (max-width: 400px) {
+    header .logo {
+      padding-left: 0px; }
+    header .buttons a {
+      width: 20px;
+      height: 20px;
+      padding: 2px; }
+      header .buttons a i {
+        font-size: 15px; }
+      header .buttons a span {
+        display: none; } }
 
 .pagecontainer {
   margin: 0px auto;

@@ -50,7 +50,7 @@ ponsse.controller("mapController", function($scope) {
             fillOpacity: 0.3
         }).addTo(map);
 
-        map.setView(locations.janinmetsa, 14);
+        map.setView(locations.janinmetsa, 13);
 
         map.on('click', function(e) {
             $scope.$apply(function() {

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Ponsse leimikko</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
         <link rel="stylesheet" href="style.css">
         <link href="bower_components/leaflet/dist/leaflet.css" rel="stylesheet">
         <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
@@ -26,10 +27,10 @@
                     <div>Leimikko PRO</div>
                 </a>
                 <div class="buttons">
-                    <a href="#/" ng-class="bodyCtrl.classActive('/')"><i class="icon ion-clipboard"></i>Työt</a>
-                    <a href="#/map" ng-class="bodyCtrl.classActive('/map')"><i class="icon ion-map"></i>Kartta</a>
-                    <a href="#/saa" ng-class="bodyCtrl.classActive('/saa')"><i class="icon ion-ios-partlysunny-outline"></i>Sää</a>
-                    <a href="#/settings" ng-class="bodyCtrl.classActive('/settings')"><i class="icon ion-ios-gear-outline"></i>Asetukset</a>
+                    <a href="#/" ng-class="bodyCtrl.classActive('/')"><i class="icon ion-clipboard"></i><span>Työt</span></a>
+                    <a href="#/map" ng-class="bodyCtrl.classActive('/map')"><i class="icon ion-map"></i><span>Kartta</span></a>
+                    <a href="#/saa" ng-class="bodyCtrl.classActive('/saa')"><i class="icon ion-ios-partlysunny-outline"></i><span>Sää</span></a>
+                    <a href="#/settings" ng-class="bodyCtrl.classActive('/settings')"><i class="icon ion-ios-gear-outline"></i><span>Asetukset</span></a>
                 </div>
             </header>
             <div id="view" ng-view></div>

@@ -23,6 +23,10 @@ html, body, #body {
 
 #view {
     height: calc(100% - 100px);
+
+    @media (max-width: 700px) {
+        height: calc(100% - 57px);
+    }
 }
 
 #map {
@@ -214,6 +218,57 @@ header {
             &.active {
                 color: $color-ponsse;
                 border-color: $color-ponsse;
+            }
+        }
+    }
+
+    @media (max-width: 700px) {
+        height: 45px;
+        padding: 5px;
+
+        .logo {
+            left: 5px;
+            span {
+                font-size: 10px;
+                width: 20px;
+                padding: 10px 2px 2px 2px;
+            }
+            div {
+                font-size: 16px;
+            }
+        }
+
+        .buttons {
+            a {
+                width: 30px;
+                height: 30px;
+                padding: 5px;
+                font-size: 7px;
+
+                i {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        .logo {
+            padding-left: 0px;
+        }
+        .buttons {
+            a {
+                width: 20px;
+                height: 20px;
+                padding: 2px;
+
+                i {
+                    font-size: 15px;
+                }
+
+                span {
+                    display: none;
+                }
             }
         }
     }
