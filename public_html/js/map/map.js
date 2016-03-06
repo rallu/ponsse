@@ -55,11 +55,39 @@ ponsse.controller("mapController", function($scope) {
         map.on('click', function(e) {
             $scope.$apply(function() {
                 console.log("clicked [" + e.latlng.lat + ", " + e.latlng.lng + "]");
+
                 self.lastClickPosition = e.latlng;
                 if (self.mode == "clickplace") {
                     self.modal = "addflag";
                 }
             });
+        });
+
+        map.on('mousedown touchstart', function(e) {
+            if (self.mode == "drawwet") {
+                self.startDrawArea(e, {
+                    color: "#079ed0"
+                });
+            } else if (self.mode == "drawdanger") {
+                self.startDrawArea(e, {
+                    color: "#f91d1d"
+                });
+            }
+        });
+
+        map.on('mousemove touchmove', function(e) {
+            if (drawing) {
+                self.drawPoint(e);
+            }
+        });
+
+        map.on('mouseup touchend', function(e) {
+            if (self.mode == "drawwet" || self.mode == "drawdanger") {
+                self.endDrawArea();
+                $scope.$apply(function() {
+                    self.mode = null;
+                });
+            }
         });
     };
 
@@ -72,17 +100,61 @@ ponsse.controller("mapController", function($scope) {
         this.mode = null;
         this.modal = null;
         this.flagtext = null;
+        drawing = false;
+        drawingPoints = [];
     };
 
     this.addFlag = function() {
         var marker = L.marker(self.lastClickPosition, {
             icon: L.divIcon({
-                className: "map-icon-flag"
+                iconSize: [40,40],
+                className: "map-icon icon ion-flag"
             })
         });
-        console.log(marker);
+        var popup = L.popup().setContent(self.flagtext);
+        marker.bindPopup(popup);
         marker.addTo(map);
 
         this.cancel();
     };
+
+    var drawing = false;
+    var drawingPoints = [];
+    var lastPoint = null;
+    var thepolygon = null;
+    this.startDrawArea = function(startevent, polygonoptions) {
+        lastPoint = startevent.containerPoint;
+
+        polygonoptions.lineJoin = "round";
+
+        drawingPoints.push(startevent.latlng);
+        thepolygon = new L.polygon(drawingPoints, polygonoptions);
+        thepolygon.addTo(map);
+        drawing = true;
+
+
+        map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+    };
+
+    this.drawPoint = function(event) {
+        if (event.containerPoint.distanceTo(lastPoint) > 10) {
+            lastPoint = event.containerPoint;
+            drawingPoints.push(event.latlng);
+            thepolygon.setLatLngs(drawingPoints);
+        }
+    };
+
+    this.endDrawArea = function() {
+        drawing = false;
+        drawingPoints = [];
+        map.dragging.enable();
+        map.touchZoom.enable();
+        map.doubleClickZoom.enable();
+        map.scrollWheelZoom.enable();
+    };
+
+    this.endDrawArea();
 });

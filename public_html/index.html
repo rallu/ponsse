@@ -16,6 +16,7 @@
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
         <script src="bower_components/angular-moment/angular-moment.min.js"></script>
+        <script src="js/touch.js"></script>
     </head>
     <body ng-controller="bodyController as bodyCtrl">
         <div id="body">
@@ -25,8 +26,8 @@
                     <div>Leimikko PRO</div>
                 </a>
                 <div class="buttons">
-                    <a href="#/dash" ng-class="bodyCtrl.classActive('/dash')"><i class="icon ion-clipboard"></i>Taulu</a>
-                    <a href="#/map" ng-class="bodyCtrl.classActive('/map')"><i class="icon ion-map"></i>Työ</a>
+                    <a href="#/" ng-class="bodyCtrl.classActive('/')"><i class="icon ion-clipboard"></i>Työt</a>
+                    <a href="#/map" ng-class="bodyCtrl.classActive('/map')"><i class="icon ion-map"></i>Kartta</a>
                     <a href="#/saa" ng-class="bodyCtrl.classActive('/saa')"><i class="icon ion-ios-partlysunny-outline"></i>Sää</a>
                     <a href="#/settings" ng-class="bodyCtrl.classActive('/settings')"><i class="icon ion-ios-gear-outline"></i>Asetukset</a>
                 </div>
