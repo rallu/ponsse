@@ -17,5 +17,9 @@ ponsse.config(function($routeProvider) {
         templateUrl: "js/saa/saa.html",
         controller: "saaController",
         controllerAs: "saaCtrl"
+    }).when("/tyo", {
+        templateUrl: "js/tyo/tyo.html",
+        controller: "tyoController",
+        controllerAs: "tyoCtrl"
     });
 });
