@@ -1,4 +1,4 @@
-var ponsse = angular.module("ponsse", ["ngRoute","angularMoment"]);
+var ponsse = angular.module("ponsse", ["ngRoute","angularMoment","btford.socket-io"]);
 
 ponsse.config(function($routeProvider) {
     $routeProvider.when("/", {

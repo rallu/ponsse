@@ -22,6 +22,7 @@
     "angular-route": "^1.5.0",
     "angular-moment": "^0.10.3",
     "moment": "^2.11.2",
-    "heatmap.js-amd": "https://github.com/pa7/heatmap.js.git"
+    "heatmap.js-amd": "https://github.com/pa7/heatmap.js.git",
+    "angular-socket-io": "^0.7.0"
   }
 }

@@ -22,14 +22,17 @@ var finland = [
     [58.919985843195064, 18.020468378905058]
 ];
 
+var harvesterloc = [61.966341021958876, 21.44658070515594];
+
 var colors = {
     ponsse: "#fece21"
 }
 
-ponsse.controller("mapController", function($scope) {
+ponsse.controller("mapController", function($scope, $scope, socket) {
     var self = this;
     var map = null;
     this.lastClickPosition = null;
+    var drawingLayer = null;
 
     this.init = function() {
         map = new L.map('map', {
@@ -52,6 +55,15 @@ ponsse.controller("mapController", function($scope) {
         }).addTo(map);
 
         map.setView(locations.janinmetsa, 13);
+
+        L.marker(harvesterloc, {
+            icon: L.divIcon({
+                iconSize: [40,40],
+                className: "harvester"
+            })
+        }).addTo(map);
+
+        drawingLayer = L.layerGroup().addTo(map);
 
         map.on('click', function(e) {
             $scope.$apply(function() {
@@ -118,7 +130,12 @@ ponsse.controller("mapController", function($scope) {
         });
         var popup = L.popup().setContent(self.flagtext);
         marker.bindPopup(popup);
-        marker.addTo(map);
+        //marker.addTo(map);
+        marker.addTo(drawingLayer);
+        var json = marker.toGeoJSON();
+        json.type = "marker";
+        json.markertext = self.flagtext;
+        socket.emit("draw", json);
 
         this.cancel();
     };
@@ -134,7 +151,8 @@ ponsse.controller("mapController", function($scope) {
 
         drawingPoints.push(startevent.latlng);
         thepolygon = new L.polygon(drawingPoints, polygonoptions);
-        thepolygon.addTo(map);
+        thepolygon.addTo(drawingLayer);
+        thepolygon.color = polygonoptions.color;
         drawing = true;
 
 
@@ -153,6 +171,12 @@ ponsse.controller("mapController", function($scope) {
     };
 
     this.endDrawArea = function() {
+        if (thepolygon == null) {
+            return;
+        }
+        var json = thepolygon.toGeoJSON();
+        json.color = thepolygon.color;
+        socket.emit("draw", json);
         drawing = false;
         drawingPoints = [];
         map.dragging.enable();
@@ -183,4 +207,42 @@ ponsse.controller("mapController", function($scope) {
         }
     };
 
+    $scope.$on("mapcommand", function(event, payload) {
+        var command = payload.split(" ");
+        if (command[1] == "vaara") {
+            console.log(harvesterloc);
+            L.circle(harvesterloc, parseInt(payload[2]), {
+                color: "#f91d1d"
+            }).addTo(map);
+        }
+    });
+
+    socket.on("alldrawings", function(payload) {
+        console.log(payload);
+        drawingLayer.clearLayers();
+        payload.forEach(function(json) {
+            if (json.type == "marker") {
+                console.log(json);
+                var marker = L.marker([json.geometry.coordinates[1], json.geometry.coordinates[0]], {
+                    icon: L.divIcon({
+                        iconSize: [40,40],
+                        className: "map-icon icon ion-flag"
+                    })
+                });
+                var popup = L.popup().setContent(json.markertext);
+                marker.bindPopup(popup);
+                console.log(marker);
+                marker.addTo(drawingLayer);
+            } else {
+                var polygon = L.geoJson(json);
+                polygon.setStyle({
+                    color: json.color
+                });
+                console.log(polygon);
+                polygon.addTo(drawingLayer);
+            }
+        });
+    });
+
+    socket.emit("givedata");
 });

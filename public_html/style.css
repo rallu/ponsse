@@ -20,6 +20,13 @@ html, body, #body {
   color: #000; }
   #map.placing {
     cursor: crosshair !important; }
+  #map .harvester {
+    height: 50px;
+    width: 50px;
+    background: url("static/scorpion.jpg");
+    background-size: cover;
+    border-radius: 50%;
+    border: 3px solid #333; }
 
 textarea {
   font-size: 16px;
@@ -225,6 +232,15 @@ header {
       text-align: center; }
   #pagedash a {
     color: #ccc; }
+
+#tyopage.runkolukko {
+  background: red; }
+
+#tyopage .type, #tyopage .size {
+  margin: 2% 2.5%;
+  font-size: 90px;
+  padding: 60px;
+  text-align: center; }
 
 #saapage .weather > div {
   display: flex;

@@ -37,6 +37,15 @@ html, body, #body {
     &.placing {
         cursor: crosshair !important;
     }
+
+    .harvester {
+        height: 50px;
+        width: 50px;
+        background: url("static/scorpion.jpg");
+        background-size: cover;
+        border-radius: 50%;
+        border: 3px solid #333;
+    }
 }
 
 textarea {
@@ -325,6 +334,21 @@ header {
     a {
         color: #ccc;
     }
+}
+
+#tyopage {
+    &.runkolukko {
+        background: red;
+    }
+
+    .type, .size {
+        margin: 2% 2.5%;
+        font-size: 90px;
+        padding: 60px;
+        text-align: center;
+    }
+
+
 }
 
 #saapage {

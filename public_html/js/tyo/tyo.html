@@ -1,8 +1,10 @@
-<div class="pagecontainer" id="tyopage">
-    <div class="type">
-        {{tyoCtrl.type}}
-    </div>
-    <div class="size">
-        {{tyoCtrl.size}}
+<div class="pagecontainer" id="tyopage" ng-class="{runkolukko: tyoCtrl.arvot.runkolukko}">
+    <div class="row">
+        <div class="type ponssebox">
+            {{tyoCtrl.arvot.type}}
+        </div>
+        <div class="size ponssebox">
+            {{tyoCtrl.arvot.size}}
+        </div>
     </div>
 </div>
