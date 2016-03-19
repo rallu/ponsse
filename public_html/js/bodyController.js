@@ -16,10 +16,11 @@ ponsse.controller("bodyController", function($location, $scope) {
     recognition.lang = "fi-FI";
     recognition.onresult = function(event) {
         var speechresult = event.results[0][0].transcript;
+        /*
         if (event.results[0][0].confidence < 0.6) {
             return;
         }
-
+        */
         if (speechresult == "näytä kartta") {
             $scope.$apply(function() {
                 $location.path("/map");
@@ -47,4 +48,10 @@ ponsse.controller("bodyController", function($location, $scope) {
         }
     }
 
+    this.speak = function(text) {
+        var u = new SpeechSynthesisUtterance();
+        u.text = text;
+        u.lang = 'fi-FI';
+        speechSynthesis.speak(u);
+    }
 });
