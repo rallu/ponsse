@@ -218,11 +218,9 @@ ponsse.controller("mapController", function($scope, $scope, socket) {
     });
 
     socket.on("alldrawings", function(payload) {
-        console.log(payload);
         drawingLayer.clearLayers();
         payload.forEach(function(json) {
             if (json.type == "marker") {
-                console.log(json);
                 var marker = L.marker([json.geometry.coordinates[1], json.geometry.coordinates[0]], {
                     icon: L.divIcon({
                         iconSize: [40,40],
@@ -231,14 +229,12 @@ ponsse.controller("mapController", function($scope, $scope, socket) {
                 });
                 var popup = L.popup().setContent(json.markertext);
                 marker.bindPopup(popup);
-                console.log(marker);
                 marker.addTo(drawingLayer);
             } else {
                 var polygon = L.geoJson(json);
                 polygon.setStyle({
                     color: json.color
                 });
-                console.log(polygon);
                 polygon.addTo(drawingLayer);
             }
         });

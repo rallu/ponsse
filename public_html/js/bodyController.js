@@ -12,6 +12,7 @@ ponsse.controller("bodyController", function($location, $scope, tyoFactory, $roo
     };
 
     var puut = ["mänty", "kuusi", "6", "koivu", "haapa", "muu"];
+    var kuidut = ["mäntykuitu", "koivukuitu"];
 
     var listening = false;
     var recognition = new webkitSpeechRecognition();
@@ -36,7 +37,14 @@ ponsse.controller("bodyController", function($location, $scope, tyoFactory, $roo
                 var parts = speechresult.split(" ");
                 tyoFactory.type = parts.splice(0,1)[0];
                 tyoFactory.size = parts.join(" ");
-
+                self.speak(speechresult);
+            } else if (speechresult == "mäntykuitu") {
+                tyoFactory.type = "mänty";
+                tyoFactory.size = "kuitu";
+                self.speak(speechresult);
+            } else if (speechresult == "koivukuitu") {
+                tyoFactory.type = "koivu";
+                tyoFactory.size = "kuitu";
                 self.speak(speechresult);
             } else if (speechresult == "runkolukko" || speechresult == "lukko") {
                 tyoFactory.runkolukko = !tyoFactory.runkolukko;
