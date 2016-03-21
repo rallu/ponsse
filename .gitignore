@@ -1,5 +1,4 @@
 node_modules
-public_html/bower_components
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

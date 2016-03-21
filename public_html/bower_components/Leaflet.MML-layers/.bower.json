@@ -1,0 +1,15 @@
+{
+  "name": "Leaflet.MML-layers",
+  "homepage": "https://github.com/jleh/Leaflet.MML-layers",
+  "version": "1.2.0",
+  "_release": "1.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.0",
+    "commit": "d4890bd73417a7b25e5007ffed0a693a7bc176ec"
+  },
+  "_source": "git@github.com:jleh/Leaflet.MML-layers.git",
+  "_target": "^1.2.0",
+  "_originalSource": "git@github.com:jleh/Leaflet.MML-layers.git",
+  "_direct": true
+}
