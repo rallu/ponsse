@@ -40,6 +40,8 @@ io.on('connection', function(socket){
 
 app.use(express.static("public_html"));
 
-http.listen(80, function () {
-  console.log('Example app listening on port 80!');
+var port = process.env.PORT || 3000;
+
+http.listen(port, function () {
+  console.log('Ponsse running at ' + port);
 });
