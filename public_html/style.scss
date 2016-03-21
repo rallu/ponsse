@@ -336,19 +336,34 @@ header {
     }
 }
 
+.failedcommand {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff;
+    color: red;
+}
+
 #tyopage {
     &.runkolukko {
         background: red;
     }
 
     .type, .size {
+        position: relative;
         margin: 2% 2.5%;
         font-size: 90px;
         padding: 60px;
         text-align: center;
     }
 
-
+    h3 {
+        margin: 0;
+        font-size: 30px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
 }
 
 #saapage {

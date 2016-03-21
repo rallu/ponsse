@@ -20,9 +20,12 @@ ponsse.controller("bodyController", function($location, $scope, tyoFactory, $roo
     recognition.onresult = function(event) {
         $scope.$apply(function() {
             var speechresult = event.results[0][0].transcript;
+            self.lastspeech = speechresult;
+            /*
             if (event.results[0][0].confidence < 0.6) {
                 return;
             }
+            */
             if (speechresult == "näytä kartta" || speechresult == "kartta") {
                 $location.path("/map");
                 self.speak("kartta");
