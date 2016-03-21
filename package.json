@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -w server server/server.js",
     "deploy": "aws s3 sync public_html s3://ponsse/",
     "scss": "node-sass -w public_html/style.scss public_html/style.css"
   },
